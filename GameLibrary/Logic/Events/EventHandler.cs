@@ -1,4 +1,5 @@
-﻿using GameLibrary.Logic.Events.Interfaces;
+﻿using GameLibrary.Logic.Events.Abstracts;
+using GameLibrary.Logic.Events.Interfaces;
 using GameLibrary.Util;
 using GameLibrary.Util.Interfaces;
 using System;
@@ -8,18 +9,33 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GameLibrary.Logic.Events {
-    public class EventHandler<E> : IEventHandler<E> where E : IEvent {
-        private List<IEventListener<E>> _eventListeners;
-        public IReadOnlyList<IEventListener<E>> Listeners { get { return _eventListeners; } }
-        public IHandler<E> Events { get; }
+    /// <summary>
+#warning unwritten summery    /// 
+    /// </summary>
+    public class EventHandler : IEventHandler {
+        private static EventHandler _singleton;
+        private List<EventListener> _eventListeners;
 
-        public EventHandler() {
-            _eventListeners = new List<IEventListener<E>>();
-            Events = new Handler<E>();
+        private EventHandler() {
+            _eventListeners = new List<EventListener>();
         }
 
-        public void AddListener(IEventListener<E> listener) {
+        public static EventHandler Singleton {
+            get {
+                if (_singleton == null) {
+                    _singleton = new EventHandler();
+                }
+                return _singleton;
+            }
+        }
+
+        public IReadOnlyList<EventListener> Listeners { get; }
+
+        public void AddListener(EventListener listener) {
             _eventListeners.Add(listener);
+        }
+        public void RemoveListener(EventListener listener) {
+            _eventListeners.Remove(listener);
         }
     }
 }

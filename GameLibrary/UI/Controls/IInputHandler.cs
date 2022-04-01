@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameLibrary.UI.Controls {
     internal interface IInputHandler {
-        public Dictionary<(InputKeys, ModifierKeys), List<IInputListener>> Listeners { get; }
+        public IReadOnlyDictionary<(InputKeys, ModifierKeys), List<IInputListener>> Listeners { get; }
         public void AddInputListener(IInputListener listener);
         public void CatchInputs(Game game, Window window);
 

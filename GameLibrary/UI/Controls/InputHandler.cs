@@ -11,11 +11,23 @@ namespace GameLibrary.UI.Controls {
 #warning unwritten summery    /// 
     /// </summary>
     public class InputHandler : IInputHandler {
+        private static InputHandler _singleton;
         private Dictionary<(InputKeys, ModifierKeys), List<IInputListener>> _listeners;
 
-        public InputHandler() { }
+        private InputHandler() {
+            _listeners = new Dictionary<(InputKeys, ModifierKeys), List<IInputListener>>();
+        }
 
-        public Dictionary<(InputKeys, ModifierKeys), List<IInputListener>> Listeners => _listeners;
+        public static InputHandler Singleton {
+            get {
+                if(_singleton == null) {
+                    _singleton = new InputHandler();
+                }
+                return _singleton;
+            }
+        }
+
+        public IReadOnlyDictionary<(InputKeys, ModifierKeys), List<IInputListener>> Listeners => _listeners;
 
         public void AddInputListener(IInputListener listener) {
             if (Listeners[listener.ListensFor()] == null) {

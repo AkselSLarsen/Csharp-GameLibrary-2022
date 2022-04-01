@@ -13,24 +13,24 @@ using System.Threading.Tasks;
 namespace GameLibrary.World {
     public class World : IWorld {
         private IHandler<IRegion> _regions;
-        private IHandler<IWorldEvent> _events;
+        private IHandler<IEvent> _events;
 
         public IHandler<IRegion> Regions { get { return _regions; } }
-        public IHandler<IWorldEvent> Events { get { return _events; } }
+        public IHandler<IEvent> Events { get { return _events; } }
 
         public World() {
             _regions = new Handler<IRegion>();
-            _events = new Handler<IWorldEvent>();
+            _events = new Handler<IEvent>();
         }
 
         public void Tick() {
-            List<IWorldEvent> toRemove = new List<IWorldEvent>(); 
-            foreach (IWorldEvent e in Events.GetAsList()) {
+            List<IEvent> toRemove = new List<IEvent>(); 
+            foreach (IEvent e in Events.GetAsList()) {
                 e.Run();
 
                 toRemove.Add(e);
             }
-            foreach (IWorldEvent e in toRemove) {
+            foreach (IEvent e in toRemove) {
                 Events.Remove(e.ID);
             }
 

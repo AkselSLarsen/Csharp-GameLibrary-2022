@@ -2,6 +2,7 @@
 using GameLibrary.Logic.Events.Abstracts;
 using GameLibrary.Logic.Events.Interfaces;
 using GameLibrary.Util;
+using GameLibrary.Util.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace GameLibrary.Logic.Events {
         private IEntity _target;
         private Position _offset;
 
-        public MoveEvent(IEntity target, Position offset) {
+        public MoveEvent(IEntity target, Position offset) : base() {
             _target = target;
             _offset = offset;
         }

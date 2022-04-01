@@ -12,6 +12,6 @@ namespace GameLibrary.Logic.Events.Interfaces {
     /// that can be listened for and even changed or discarded if needed.
     /// </summary>
     public interface IEvent : IHasID, IRunnable {
-        
+
     }
 }

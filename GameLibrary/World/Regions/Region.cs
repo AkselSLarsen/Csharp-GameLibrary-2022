@@ -13,33 +13,32 @@ namespace GameLibrary.World.Regions {
     public class Region : IRegion {
         private ulong _id;
         private IHandler<IEntity> _entities;
-        private IHandler<IRegionalEvent> _events;
-        private Position _position;
+        private IHandler<IEvent> _events;
+        private Box _area;
         private IWorld _world;
 
-        public Region(Position position, IWorld world) {
+        public Region(Box area, IWorld world) {
             _id = IHasID.NextID();
             _entities = new Handler<IEntity>();
-            _events = new Handler<IRegionalEvent>();
-
-            _position = position;
+            _events = new Handler<IEvent>();
+            _area = area;
             _world = world;
         }
 
         public ulong ID { get { return _id; } }
         public IHandler<IEntity> Entities { get { return _entities; } }
-        public IHandler<IRegionalEvent> Events { get { return _events; } }
-        public Position WorldPosition { get { return _position; } }
+        public IHandler<IEvent> Events { get { return _events; } }
+        public Position WorldPosition { get { return _area.Middle; } }
         public IWorld World { get { return _world; } }
 
         public void Tick() {
-            List<IRegionalEvent> toRemove = new List<IRegionalEvent>();
-            foreach (IRegionalEvent e in Events.GetAsList()) {
+            List<IEvent> toRemove = new List<IEvent>();
+            foreach (IEvent e in Events.GetAsList()) {
                 e.Run();
 
                 toRemove.Add(e);
             }
-            foreach (IRegionalEvent e in toRemove) {
+            foreach (IEvent e in toRemove) {
                 Events.Remove(e.ID);
             }
 

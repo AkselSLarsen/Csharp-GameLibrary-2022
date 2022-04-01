@@ -15,6 +15,6 @@ namespace GameLibrary.World {
     /// </summary>
     public interface IWorld : ITickable {
         public IHandler<IRegion> Regions { get; }
-        public IHandler<IWorldEvent> Events { get; }
+        public IHandler<IEvent> Events { get; }
     }
 }

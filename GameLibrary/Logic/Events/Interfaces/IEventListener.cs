@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GameLibrary.Logic.Events.Interfaces {
-    public interface IEventListener<E> where E : IEvent {
-        
+    internal interface IEventListener {
+        public Func<IEvent, bool> ListensFor();
+        public void OnEvent(IEvent evt);
     }
 }

@@ -10,7 +10,7 @@ namespace GameLibrary.Logic.Events.Abstracts {
     public abstract class Event : IEvent {
         private ulong _id;
 
-        public Event() {
+        protected Event() {
             _id = IHasID.NextID();
         }
 

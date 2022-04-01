@@ -18,13 +18,11 @@ namespace GameLibrary {
         public bool Stop { get; set; }
         public bool Pause { get; set; }
         public IWorld World { get; protected set; }
-        public InputHandler InputHandler { get; protected set; }
         public Window MainWindow { get; protected set; }
 
-        public Game(string settingsFilePath, Window mainWindow, InputHandler inputHandler, IWorld world) {
+        public Game(string settingsFilePath, IWorld world, Window mainWindow) {
             SettingsLoader.LoadSettings(settingsFilePath);
             MainWindow = mainWindow;
-            InputHandler = inputHandler;
             World = world;
         }
 
@@ -38,7 +36,7 @@ namespace GameLibrary {
             });
 
             Task.Run(() => {
-                InputHandler.CatchInputs(this, MainWindow);
+                InputHandler.Singleton.CatchInputs(this, MainWindow);
             });
             
             while(!Stop) {

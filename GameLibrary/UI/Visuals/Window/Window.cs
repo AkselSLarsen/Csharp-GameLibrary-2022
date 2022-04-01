@@ -11,19 +11,22 @@ namespace GameLibrary.UI.Visuals.Window {
     /// </summary>
     public class Window : IWindow {
         private Box _viewArea;
-        private IHandler<IDrawable> _drawables;
         private IWorld _world;
 
         public Window(IWorld world, Box viewArea) {
             _world = world;
             _viewArea = viewArea;
-
-            _drawables = new Handler<IDrawable>();
         }
 
         public Box ViewArea => _viewArea;
-        public IHandler<IDrawable> Drawables => _drawables;
         public IWorld World => _world;
+        public IHandler<IDrawable> Drawables {
+            //should likely chach this.
+            get {
+
+            }
+        }
+        
 
         public void Tick() {
             switch (GraphicsSettings.VisualType) {
@@ -39,15 +42,15 @@ namespace GameLibrary.UI.Visuals.Window {
         }
 
         protected virtual void TickASCII() {
+            Console.Clear();
             (int x, int y) = WindowSize();
             Action[][] drawActions = new Action[x][];
             for (int i = 0; i < x; i++) {
                 drawActions[i] = new Action[y];
             }
-            Action drawSpace = DrawSpace();
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
-                    drawActions[x][y] = drawSpace;
+                    drawActions[i][j] = DrawSpace();
                 }
             }
             foreach (IDrawable drawable in Drawables.GetAsList()) {
@@ -59,18 +62,17 @@ namespace GameLibrary.UI.Visuals.Window {
                     drawable.Draw();
                 };
             }
-
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
-                    drawActions[x][y].Invoke();
+                    drawActions[i][j].Invoke();
                 }
                 Console.WriteLine();
             }
         }
 
-        private Action DrawSpace() {
+        private static Action DrawSpace() {
             return () => {
-                Console.Write("X");
+                Console.Write(" ");
             };
         }
 

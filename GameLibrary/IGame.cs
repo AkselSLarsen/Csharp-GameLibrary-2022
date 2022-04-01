@@ -13,7 +13,6 @@ namespace GameLibrary {
         public bool Stop { get; set; }
         public bool Pause { get; set; }
         public Window MainWindow { get; }
-        public InputHandler InputHandler { get; }
         public void GameLoop(int tickFrequency = 500, int frameRate = 50);
     
     }

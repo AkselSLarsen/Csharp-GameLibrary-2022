@@ -15,6 +15,6 @@ namespace GameLibrary.World.Regions {
     /// </summary>
     public interface IRegion : IHasWorldPosition, ITickable, IHasID {
         public IHandler<IEntity> Entities { get; }
-        public IHandler<IRegionalEvent> Events { get; }
+        public IHandler<IEvent> Events { get; }
     }
 }
