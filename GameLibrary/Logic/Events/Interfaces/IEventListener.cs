@@ -5,11 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GameLibrary.Logic.Events.Interfaces {
-    /// <summary>
-#warning unwritten summery    /// 
-    /// </summary>
-    public interface IEventListener<E> where E : IEvent {
-    
-    
+    internal interface IEventListener<E> where E : IEvent {
+        
     }
 }

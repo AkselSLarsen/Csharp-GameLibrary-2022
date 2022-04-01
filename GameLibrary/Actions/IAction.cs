@@ -10,7 +10,5 @@ namespace GameLibrary.Actions {
     /// </summary>
     public interface IAction {
 
-
-
     }
 }

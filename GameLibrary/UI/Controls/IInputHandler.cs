@@ -16,6 +16,9 @@ namespace GameLibrary.UI.Controls {
 
         public static IInput InputFromConsoleKeyInfo(ConsoleKeyInfo keyInfo) {
             InputKeys key = InputKeyFromConsoleKey(keyInfo.Key);
+            ModifierKeys modifiers = ModifierKeysFromConsoleModifiers(keyInfo.Modifiers);
+
+            return new Input(key, modifiers);
         }
         public static InputKeys InputKeyFromConsoleKey(ConsoleKey key) {
             switch(key) {
@@ -74,11 +77,29 @@ namespace GameLibrary.UI.Controls {
                 case ConsoleKey.Z:
                     return InputKeys.Z;
                 #endregion
-
+#warning need more keys
                 #endregion
                 default:
 #warning should be implemented before release
                     throw new NotImplementedException();
+            }
+        }
+        public static ModifierKeys ModifierKeysFromConsoleModifiers(ConsoleModifiers mods) {
+            switch (mods) {
+                case (ConsoleModifiers)1:
+                    return ModifierKeys.Alt;
+                case (ConsoleModifiers)2:
+                    return ModifierKeys.Shift;
+                case (ConsoleModifiers)3:
+                    return ModifierKeys.Alt_Shift;
+                case (ConsoleModifiers)4:
+                    return ModifierKeys.Ctrl;
+                case (ConsoleModifiers)5:
+                    return ModifierKeys.Ctrl_Alt;
+                case (ConsoleModifiers)6:
+                    return ModifierKeys.Ctrl_Shift;
+                default:
+                    return ModifierKeys.None;
             }
         }
     }
