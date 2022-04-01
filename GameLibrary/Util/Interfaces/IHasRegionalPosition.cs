@@ -10,6 +10,6 @@ namespace GameLibrary.Util.Interfaces {
 #warning unwritten summery    /// 
     /// </summary>
     public interface IHasRegionalPosition : IHasRegion {
-        public Position RegionalPosition { get; }
+        public Position RegionalPosition { get; set; }
     }
 }

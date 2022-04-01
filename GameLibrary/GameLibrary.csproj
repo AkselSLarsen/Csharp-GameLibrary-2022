@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Actions\" />
     <Folder Include="Logic\AI\" />
   </ItemGroup>
 

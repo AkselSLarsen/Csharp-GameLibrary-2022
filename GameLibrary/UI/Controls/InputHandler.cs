@@ -25,7 +25,7 @@ namespace GameLibrary.UI.Controls {
         }
 
         public void CatchInputs(Game game, Window window) {
-            switch(GraphicsSettings.VisualType) {
+            switch (GraphicsSettings.VisualType) {
                 case VisualTypes.Unset:
                     throw new SettingsException("Cannot handle inputs when visual type is unset.");
                 case VisualTypes.ASCII:
@@ -39,7 +39,7 @@ namespace GameLibrary.UI.Controls {
 
         protected virtual void CatchASCIIInputs(Game game, Window window) {
             while(!game.Stop) {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
                 // We run it in a task as an attempt to catch all inputs
                 // regardless of how long the calculation of what to do with the input takes.

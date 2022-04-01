@@ -1,4 +1,4 @@
-﻿using GameLibrary.Actions.Interactions;
+﻿using GameLibrary.Interactions;
 using GameLibrary.UI.Visuals.Drawables;
 using GameLibrary.Util;
 using GameLibrary.Util.Interfaces;
@@ -31,7 +31,14 @@ namespace GameLibrary.Entities {
         public IReadOnlyList<IInteraction> Interactions => _interactions;
         public Box HitBox => _hitBox;
         public Position ViewPosition => _drawable.ViewPosition;
-        public Position RegionalPosition => _regionalPosition;
+        public Position RegionalPosition {
+            get {
+                return _regionalPosition;
+            }
+            set {
+                _regionalPosition = value;
+            }
+        }
         public IRegion Region => _region;
 
         public void Draw() {

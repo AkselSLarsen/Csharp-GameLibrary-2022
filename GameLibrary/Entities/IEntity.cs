@@ -1,4 +1,4 @@
-﻿using GameLibrary.Actions.Interactions;
+﻿using GameLibrary.Interactions;
 using GameLibrary.UI.Visuals.Drawables;
 using GameLibrary.Util;
 using GameLibrary.Util.Interfaces;

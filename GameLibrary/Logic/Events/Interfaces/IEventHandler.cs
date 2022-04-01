@@ -14,7 +14,6 @@ namespace GameLibrary.Logic.Events.Interfaces {
         public IReadOnlyList<IEventListener<E>> Listeners { get; }
         public void AddListener(IEventListener<E> listener);
 
-
         private static IEventHandler<E> EventHandler = null;
         public static IEventHandler<E> GetEventHandler() {
             if(EventHandler == null) {

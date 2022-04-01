@@ -20,6 +20,7 @@ namespace GameLibrary.World {
 
         public World() {
             _regions = new Handler<IRegion>();
+            _events = new Handler<IWorldEvent>();
         }
 
         public void Tick() {

@@ -1,5 +1,4 @@
-﻿using GameLibrary.Actions;
-using GameLibrary.Actions.Interactions;
+﻿using GameLibrary.Interactions;
 using GameLibrary.UI.Controls;
 using GameLibrary.UI.Visuals.Drawables;
 using GameLibrary.Util;
@@ -11,10 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GameLibrary.Entities.Actors {
-    public abstract class ControlableActor : Actor, IControlableActor {
+    public abstract class ControlableActor : Entity, IControlableActor {
         private List<IInputListener> _listeners;
 
-        protected ControlableActor(List<IInteraction> interactions, List<IAction> actions, Box hitBox, Position regionalPosition, IRegion region, IDrawable drawable, List<IInputListener> listeners) : base(interactions, actions, hitBox, regionalPosition, region, drawable) {
+        protected ControlableActor(List<IInteraction> interactions, Box hitBox, Position regionalPosition, IRegion region, IDrawable drawable, List<IInputListener> listeners) : base(interactions, hitBox, regionalPosition, region, drawable) {
             _listeners = listeners;
         }
 
@@ -23,5 +22,7 @@ namespace GameLibrary.Entities.Actors {
         public void AddListener(EventInputListener listener) {
             _listeners.Add(listener);
         }
+
+        public abstract void Tick();
     }
 }

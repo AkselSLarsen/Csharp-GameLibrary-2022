@@ -24,6 +24,7 @@ namespace GameLibrary.UI.Visuals.Window {
         public Box ViewArea => _viewArea;
         public IHandler<IDrawable> Drawables => _drawables;
         public IWorld World => _world;
+
         public void Tick() {
             switch (GraphicsSettings.VisualType) {
                 case VisualTypes.Unset:
@@ -69,7 +70,7 @@ namespace GameLibrary.UI.Visuals.Window {
 
         private Action DrawSpace() {
             return () => {
-                Console.Write(" ");
+                Console.Write("X");
             };
         }
 

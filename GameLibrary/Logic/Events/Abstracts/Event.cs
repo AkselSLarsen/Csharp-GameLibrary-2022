@@ -7,19 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GameLibrary.Logic.Events.Abstracts {
-    public class Event : IEvent {
+    public abstract class Event : IEvent {
         private ulong _id;
-        private Action _action;
 
-        public Event(Action action) {
+        public Event() {
             _id = IHasID.NextID();
-            _action = action;
         }
 
         public ulong ID => _id;
 
-        public void Run() {
-            _action.Invoke();
-        }
+        public abstract void Run();
     }
 }

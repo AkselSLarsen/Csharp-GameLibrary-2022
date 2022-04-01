@@ -20,6 +20,7 @@ namespace GameLibrary.World.Regions {
         public Region(Position position, IWorld world) {
             _id = IHasID.NextID();
             _entities = new Handler<IEntity>();
+            _events = new Handler<IRegionalEvent>();
 
             _position = position;
             _world = world;

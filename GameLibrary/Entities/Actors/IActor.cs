@@ -1,5 +1,4 @@
-﻿using GameLibrary.Actions;
-using GameLibrary.Logic;
+﻿using GameLibrary.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +10,6 @@ namespace GameLibrary.Entities.Actors {
 #warning unwritten summery    /// 
     /// </summary>
     public interface IActor : ITickable, IEntity {
-
-        public IReadOnlyList<IAction> Actions { get; }
 
     }
 }

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameLibrary.Actions {
+namespace GameLibrary.Interactions {
     /// <summary>
 #warning unwritten summery    /// 
     /// </summary>
-    public interface IAction {
+    public interface IInteraction {
+
+
 
     }
 }
