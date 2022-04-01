@@ -9,9 +9,9 @@ namespace GameLibrary.Logic.Events.Interfaces {
     /// <summary>
     /// Events represents a desired change to the state of the gameworld.
     /// Instead of changing the game data directly, it allows more versitility to create an event,
-    /// asking the with the change incoded.
+    /// that can be listened for and even changed or discarded if needed.
     /// </summary>
     public interface IEvent : IHasID, IRunnable {
-
+        
     }
 }

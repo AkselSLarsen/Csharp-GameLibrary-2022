@@ -44,13 +44,13 @@ namespace GameLibrary.UI.Controls {
                 // We run it in a task as an attempt to catch all inputs
                 // regardless of how long the calculation of what to do with the input takes.
                 Task.Run(() => {
-                    HandleInput(keyInfo);
+                    HandleInput(IInputHandler.InputFromConsoleKeyInfo(keyInfo));
                 });
             }
         }
 
         protected virtual void CatchWinformsInputs(Game game, Window window) {
-                       
+            throw new NotImplementedException();
         }
 
         protected void HandleInput(IInput input) {
