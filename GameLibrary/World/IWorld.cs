@@ -1,5 +1,6 @@
 ﻿using GameLibrary.Entities;
 using GameLibrary.Logic;
+using GameLibrary.Logic.Events.Abstracts;
 using GameLibrary.Logic.Events.Interfaces;
 using GameLibrary.Util.Interfaces;
 using GameLibrary.World.Regions;
@@ -15,6 +16,6 @@ namespace GameLibrary.World {
     /// </summary>
     public interface IWorld : ITickable {
         public IHandler<IRegion> Regions { get; }
-        public IHandler<IEvent> Events { get; }
+        public IHandler<Event> Events { get; }
     }
 }

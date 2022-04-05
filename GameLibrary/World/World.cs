@@ -1,4 +1,5 @@
 ﻿using GameLibrary.Entities;
+using GameLibrary.Logic.Events.Abstracts;
 using GameLibrary.Logic.Events.Interfaces;
 using GameLibrary.Settings;
 using GameLibrary.Util;
@@ -13,14 +14,14 @@ using System.Threading.Tasks;
 namespace GameLibrary.World {
     public class World : IWorld {
         private IHandler<IRegion> _regions;
-        private IHandler<IEvent> _events;
+        private IHandler<Event> _events;
 
         public IHandler<IRegion> Regions { get { return _regions; } }
-        public IHandler<IEvent> Events { get { return _events; } }
+        public IHandler<Event> Events { get { return _events; } }
 
         public World() {
             _regions = new Handler<IRegion>();
-            _events = new Handler<IEvent>();
+            _events = new Handler<Event>();
         }
 
         public void Tick() {
@@ -33,7 +34,6 @@ namespace GameLibrary.World {
             foreach (IEvent e in toRemove) {
                 Events.Remove(e.ID);
             }
-
 
             IReadOnlyCollection<IRegion> regions = Regions.GetAsList();
             Parallel.For(0, regions.Count, (i, loopState) => {

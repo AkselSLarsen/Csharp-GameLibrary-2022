@@ -9,13 +9,14 @@ namespace GameLibrary.Logic.Events.Abstracts {
     /// <summary>
 #warning unwritten summery    /// 
     /// </summary>
-    public abstract class EventListener : IEventListener {
+    public abstract class EventListener : IEventListener<Event> {
         public EventListener() {
             Register();
         }
 
-        public abstract Func<IEvent, bool> ListensFor();
-        public abstract void OnEvent(IEvent evt);
+        public abstract Type EventType { get; }
+
+        public abstract void OnEvent(Event evt);
 
         public void Register() {
             EventHandler.Singleton.AddListener(this);

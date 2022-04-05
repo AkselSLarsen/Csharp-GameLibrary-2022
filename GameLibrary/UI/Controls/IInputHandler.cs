@@ -12,7 +12,7 @@ namespace GameLibrary.UI.Controls {
     internal interface IInputHandler {
         public IReadOnlyDictionary<(InputKeys, ModifierKeys), List<IInputListener>> Listeners { get; }
         public void AddInputListener(IInputListener listener);
-        public void CatchInputs(Game game, Window window);
+        public void CatchInputs(Window window);
 
         public static IInput InputFromConsoleKeyInfo(ConsoleKeyInfo keyInfo) {
             InputKeys key = InputKeyFromConsoleKey(keyInfo.Key);
@@ -20,7 +20,7 @@ namespace GameLibrary.UI.Controls {
 
             return new Input(key, modifiers);
         }
-        public static InputKeys InputKeyFromConsoleKey(ConsoleKey key) {
+        private static InputKeys InputKeyFromConsoleKey(ConsoleKey key) {
             switch(key) {
                 #region ConsoleKey to InputKeys mapping
                 #region letters
@@ -98,6 +98,8 @@ namespace GameLibrary.UI.Controls {
                     return ModifierKeys.Ctrl_Alt;
                 case (ConsoleModifiers)6:
                     return ModifierKeys.Ctrl_Shift;
+                case (ConsoleModifiers)7:
+                    return ModifierKeys.Ctrl_Alt_Shift;
                 default:
                     return ModifierKeys.None;
             }

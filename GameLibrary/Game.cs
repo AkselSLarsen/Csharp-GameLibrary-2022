@@ -15,12 +15,27 @@ namespace GameLibrary {
 #warning unwritten summery    /// 
     /// </summary>
     public class Game : IGame {
+        private static Game _singleton;
+
+        private Game() { }
+
         public bool Stop { get; set; }
         public bool Pause { get; set; }
         public IWorld World { get; protected set; }
         public Window MainWindow { get; protected set; }
 
-        public Game(string settingsFilePath, IWorld world, Window mainWindow) {
+        public static Game Singleton {
+            get {
+                if (_singleton == null) {
+                    throw new Exception("You must call Game.Setup(string, IWorld, Window) before using Game.Singleton.");
+                }
+                return _singleton;
+            }
+        }
+
+        public void Setup(string settingsFilePath, IWorld world, Window mainWindow) {
+            _singleton = new Game();
+
             SettingsLoader.LoadSettings(settingsFilePath);
             MainWindow = mainWindow;
             World = world;
@@ -36,7 +51,7 @@ namespace GameLibrary {
             });
 
             Task.Run(() => {
-                InputHandler.Singleton.CatchInputs(this, MainWindow);
+                InputHandler.Singleton.CatchInputs(MainWindow);
             });
             
             while(!Stop) {

@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace GameLibrary.Logic.Events.Interfaces {
     internal interface IEventHandler {
-        public IReadOnlyList<EventListener> Listeners { get; }
+        public IReadOnlyDictionary<Type, List<EventListener>> Listeners { get; }
         public void AddListener(EventListener listener);
         public void RemoveListener(EventListener listener);
+
+        public void OnEventRun(Event evt);
     }
 }

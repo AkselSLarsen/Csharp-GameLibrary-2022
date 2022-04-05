@@ -1,4 +1,5 @@
 ﻿using GameLibrary.Logic.Events;
+using GameLibrary.Logic.Events.Abstracts;
 using GameLibrary.Logic.Events.Interfaces;
 using GameLibrary.Util.Interfaces;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace GameLibrary.UI.Controls {
     public class EventInputListener : InputListener {
-        private IEvent _evt;
-        private IHandler<IEvent> _target;
+        private Event _evt;
+        private IHandler<Event> _target;
 
-        public EventInputListener(InputKeys key, ModifierKeys mods, IEvent evt, IHandler<IEvent> target) : base(key, mods) {
+        public EventInputListener(InputKeys key, ModifierKeys mods, Event evt, IHandler<Event> target) : base(key, mods) {
             _evt = evt;
             _target = target;
         }

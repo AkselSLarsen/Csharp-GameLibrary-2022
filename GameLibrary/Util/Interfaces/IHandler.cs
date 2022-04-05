@@ -9,7 +9,7 @@ namespace GameLibrary.Util.Interfaces {
 #warning unwritten summery    /// 
     /// </summary>
     public interface IHandler<T> where T : IHasID {
-        public IReadOnlyCollection<T> GetAsList();
+        public IReadOnlyList<T> GetAsList();
         public IReadOnlyDictionary<ulong, T> GetAsDictionary();
         public T Get(ulong id);
         public bool Add(T t);

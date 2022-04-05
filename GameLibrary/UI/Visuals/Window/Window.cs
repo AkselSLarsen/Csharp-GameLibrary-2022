@@ -1,9 +1,12 @@
-﻿using GameLibrary.Settings;
+﻿using GameLibrary.Entities;
+using GameLibrary.Settings;
 using GameLibrary.UI.Visuals.Drawables;
 using GameLibrary.Util;
 using GameLibrary.Util.Interfaces;
 using GameLibrary.World;
+using GameLibrary.World.Regions;
 using System;
+using System.Collections.Generic;
 
 namespace GameLibrary.UI.Visuals.Window {
     /// <summary>
@@ -21,12 +24,20 @@ namespace GameLibrary.UI.Visuals.Window {
         public Box ViewArea => _viewArea;
         public IWorld World => _world;
         public IHandler<IDrawable> Drawables {
-            //should likely chach this.
+#warning should cache this
             get {
-
+                IHandler<IDrawable> handler = new Handler<IDrawable>();
+                IReadOnlyList<IRegion> regions = World.Regions.GetAsList();
+                foreach(IRegion region in regions) {
+                    if(_viewArea.Overlaps(region.Area)) {
+                        foreach (IEntity entity in region.Entities.GetAsList()) {
+                            handler.Add(entity);
+                        }
+                    }
+                }
+                return handler;
             }
         }
-        
 
         public void Tick() {
             switch (GraphicsSettings.VisualType) {

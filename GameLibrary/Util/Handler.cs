@@ -14,7 +14,7 @@ namespace GameLibrary.Util {
             _internal = new Dictionary<ulong, T>();
         }
 
-        public IReadOnlyCollection<T> GetAsList() {
+        public IReadOnlyList<T> GetAsList() {
             return _internal.Values.ToList();
         }
         public IReadOnlyDictionary<ulong, T> GetAsDictionary() {

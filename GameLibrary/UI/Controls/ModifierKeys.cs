@@ -12,7 +12,7 @@ namespace GameLibrary.UI.Controls {
         Shift,
         Ctrl_Alt,
         Ctrl_Shift,
-        Alt_Shift
-
+        Alt_Shift,
+        Ctrl_Alt_Shift
     }
 }

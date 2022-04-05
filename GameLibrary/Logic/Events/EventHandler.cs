@@ -14,10 +14,11 @@ namespace GameLibrary.Logic.Events {
     /// </summary>
     public class EventHandler : IEventHandler {
         private static EventHandler _singleton;
-        private List<EventListener> _eventListeners;
+        private Dictionary<Type, List<EventListener>> _eventListeners;
+        private List<Event> _events;
 
         private EventHandler() {
-            _eventListeners = new List<EventListener>();
+            _eventListeners = new Dictionary<Type, List<EventListener>>();
         }
 
         public static EventHandler Singleton {
@@ -29,13 +30,29 @@ namespace GameLibrary.Logic.Events {
             }
         }
 
-        public IReadOnlyList<EventListener> Listeners { get; }
+        public IReadOnlyDictionary<Type, List<EventListener>> Listeners => _eventListeners;
+        public IReadOnlyList<Event> Events => _events;
 
         public void AddListener(EventListener listener) {
-            _eventListeners.Add(listener);
+            if(!_eventListeners.ContainsKey(listener.EventType)) {
+                _eventListeners.Add(listener.EventType, new List<EventListener>());
+            }
+            _eventListeners[listener.EventType].Add(listener);
         }
         public void RemoveListener(EventListener listener) {
-            _eventListeners.Remove(listener);
+            if (!_eventListeners.ContainsKey(listener.EventType)) {
+                _eventListeners.Add(listener.EventType, new List<EventListener>());
+            }
+            _eventListeners[listener.EventType].Remove(listener);
+        }
+        public void AddEvent(Event evt) {
+            _events.Add(evt);
+        }
+
+        public void OnEventRun(Event evt) {
+            _eventListeners[evt.GetType()].ForEach((eventListener) => {
+                eventListener.OnEvent(evt);
+            });
         }
     }
 }

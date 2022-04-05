@@ -36,21 +36,21 @@ namespace GameLibrary.UI.Controls {
             _listeners[listener.ListensFor()].Add(listener);
         }
 
-        public void CatchInputs(Game game, Window window) {
+        public void CatchInputs(Window window) {
             switch (GraphicsSettings.VisualType) {
                 case VisualTypes.Unset:
                     throw new SettingsException("Cannot handle inputs when visual type is unset.");
                 case VisualTypes.ASCII:
-                    CatchASCIIInputs(game, window);
+                    CatchASCIIInputs(window);
                     break;
                 case VisualTypes.Winforms:
-                    CatchWinformsInputs(game, window);
+                    CatchWinformsInputs(window);
                     break;
             }
         }
 
-        protected virtual void CatchASCIIInputs(Game game, Window window) {
-            while(!game.Stop) {
+        protected virtual void CatchASCIIInputs(Window window) {
+            while(!Game.Singleton.Stop) {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
                 // We run it in a task as an attempt to catch all inputs
@@ -61,7 +61,7 @@ namespace GameLibrary.UI.Controls {
             }
         }
 
-        protected virtual void CatchWinformsInputs(Game game, Window window) {
+        protected virtual void CatchWinformsInputs(Window window) {
             throw new NotImplementedException();
         }
 
